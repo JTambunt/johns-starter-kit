@@ -1,0 +1,42 @@
+node_modules/**/*
+.expo/*
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+.DS_Store
+
+# api credentials
+config/Secrets.js
+
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+firebase-debug.log*
+firebase-debug.*.log*
+
+# Firebase cache
+.firebase/
+
+# Firebase config
+
+# Uncomment this if you'd like others to create their own Firebase project.
+# For a team working on the same Firebase project(s), it is recommended to leave
+# it commented so all members can deploy to the same project(s) in .firebaserc.
+.firebaserc
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
