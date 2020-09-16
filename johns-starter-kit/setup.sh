@@ -1,6 +1,6 @@
 if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
    # assume Zsh
-   PROFILE=".zsh_profile"
+   PROFILE=".zshrc"
 elif [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
    # assume Bash
    PROFILE=".bash_profile"
@@ -67,8 +67,4 @@ command -v firebase >/dev/null 2>&1 && {
     npm i -g firebase-tools
 }
 
-firebase login
-firebase init
-
-yarn install
-echo "Project setup complete"
+echo "Global config complete"
