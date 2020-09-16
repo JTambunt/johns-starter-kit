@@ -15,7 +15,6 @@ echo "Using ${PROFILE}"
 source $HOME/$PROFILE
 
 echo "Sourcing user profile for command detection."
-
 echo "Home directory is $HOME"
 
 command -v brew >/dev/null 2>&1 &&
@@ -32,8 +31,14 @@ command -v nvm >/dev/null 2>&1 &&
 } || {
     echo "No NVM detected installing NVM."
     brew install nvm
+    # mkdir ~/.nvm if it doesn't exist
+    [ ! -d "~/.nvm" ] && {
+        mkdir ~/.nvm
+    }
     echo export NVM_DIR="$HOME/.nvm" >> $HOME/$PROFILE
-    echo . "$(brew --prefix nvm)/nvm.sh" >> $HOME/$PROFILE
+    # echo . "$(brew --prefix nvm)/nvm.sh" >> $HOME/$PROFILE
+    echo [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh" >> $HOME/$PROFILE  # This loads nvm
+    echo [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm" >> $HOME/$PROFILE  # This loads nvm bash_completion
 
     # Source the profile
     source $HOME/$PROFILE;
@@ -67,4 +72,9 @@ command -v firebase >/dev/null 2>&1 && {
     npm i -g firebase-tools
 }
 
-echo "Global config complete"
+echo "Global node packages installed"
+
+yarn install
+
+echo "Local node packages installed, you're all set!!! :]"
+
