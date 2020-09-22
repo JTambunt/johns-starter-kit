@@ -11,6 +11,8 @@ What is included in this starter kit:
 -   basic user permissions (firebase authentication) (coming soon!)
 -   push notification example (expo) (coming soon!)
 
+---
+
 ## Getting Started
 
 1. create an [expo account](https://expo.io/).
@@ -40,25 +42,144 @@ export const firebaseConfig = {
 
 9.  run `./setup.sh`
 
+You should now be all set! To run the app, use the command `expo start` followed by the device you would like to run it on `i` for the iOS simulator, `a` for the android simulater, `w` for running it on the browser, or `e` to run it on your device (setup/installation of the expo app required to run on physical device)
+
+---
+
 ## Techstack Overview
 
-    React Native:
-        [React Native](https://reactnative.dev/) is a frontend javascript library used to create mobile applications. React Native is great because you can essentially write one app and deploy it on both the iOS and Android app stores. Other alternatives to React Native are: Angular.js, Vue.js, writing an iOS app natively in swift/obj-c, and writing an android app natively in Java.
+**React Native:**
+[React Native](https://reactnative.dev/) is a frontend javascript library used to create mobile applications. React Native is great because you can essentially write one app and deploy it on both the iOS and Android app stores. Other alternatives to React Native are: Angular.js, Vue.js, writing an iOS app natively in swift/obj-c, and writing an android app natively in Java.
 
-    Expo:
-        [Expo](https://expo.io/) is an SDK (Software Development Kit) used to expedite the buiilding and deploying of React Native apps.
+**Expo:**
+[Expo](https://expo.io/) is an SDK (Software Development Kit) used to expedite the buiilding and deploying of React Native apps.
 
-    React Navigation:
-        [React Navigation](https://reactnavigation.org/) is a node package used for handling navigation within a React Native app.
+**React Navigation:**
+[React Navigation](https://reactnavigation.org/) is a node package used for handling navigation within a React Native app.
 
-    Firebase:
-        [Firebase](https://firebase.google.com/?gclid=CjwKCAjw2Jb7BRBHEiwAXTR4jeO99xXZpUsJe5yOE5YBGhWT2VGmU51H10_UcD6rmNNnUxOI1Zet5RoC-bMQAvD_BwE) is an SDK that combines a lot of backend services into one platform. In this case, we use it as a database (Firestore), authentication system, and as a hosting service.
+```js
+this.props.navigation.navigate('Settings');
+```
+
+> Note: typical navigation call from a component
+
+**Firebase:**
+[Firebase](https://firebase.google.com/?gclid=CjwKCAjw2Jb7BRBHEiwAXTR4jeO99xXZpUsJe5yOE5YBGhWT2VGmU51H10_UcD6rmNNnUxOI1Zet5RoC-bMQAvD_BwE) is an SDK that combines a lot of backend services into one platform. In this case, we use it as a database (Firestore), authentication system, and as a hosting service.
+
+---
 
 ## Redux Guide
 
-    [Redux](https://redux.js.org/) is "A Predictable State Container for JS Apps"
+[Redux](https://redux.js.org/) is "A Predictable State Container for JS Apps"
 
-    The easiest way I can describe redux is, it's a way to manage the global state of your application. What is the global state? It's essentially a JS object that you can access from any component. This [diagram](https://miro.medium.com/max/2000/1*UlUxZFIVEyxVjV1K70BzJQ.png) is a useful way of understanding how redux works.
+The easiest way I can describe redux is, it's a way to manage the global state of your application. What is the global state? It's essentially a JS object that you can access from any component. We use redux when we make network calls to our database by dispatching actions from the ui components.
+
+This diagram may be helpful to understand how redux works:
+
+<img src="https://miro.medium.com/max/2000/1*UlUxZFIVEyxVjV1K70BzJQ.png" width="500">
+
+When the user presses 'submit' after filling in a post, we fire a CREATE_POST action. The reducer is then responsible for updating the global state based on the action and the data tied to it (the payload). We then map the global state and connect it (parts of it) to the component we want to update through MapStateToProps.
+
+Unlike others that break up their files by type:
+
+<img src="https://cdn-images-1.medium.com/max/2000/1*HM8M2Agd_TBfU4Zm1_lEJA.png" width="250">
+
+I've found it much easier to manage by putting the actions, reducers, and action types all in one file per feature called a 'Duck'. Each duck is organized in the following order:
+
+**Types:**
+
+```js
+export const types = {
+    CREATE_POST: 'CREATE_POST',
+    CREATE_POST_SUCCESS: 'CREATE_POST_SUCCESS',
+    CREATE_POST_FAIL: 'CREATE_POST_FAIL',
+};
+```
+
+**Reducer:**
+
+```js
+const INITIAL_STATE = {
+    error: '',
+    loading: false,
+    createPostSuccess: false,
+};
+
+export default (state = INITIAL_STATE, action) => {
+    switch (action.type) {
+        case types.CREATE_POST:
+            return {
+                ...state,
+                loading: true,
+            };
+        case types.CREATE_POST_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                createPostSuccess: true,
+            };
+        case types.CREATE_POST_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
+        default:
+            return state;
+    }
+};
+```
+
+**Action:**
+
+```js
+export const createPost = (post) => {
+    return (dispatch) => {
+        try {
+            let postObject = Object.assign({}, post);
+            postObject.date = new Date();
+            const ref = db.collection('posts').doc();
+            const id = ref.id;
+
+            postObject.id = id;
+            dispatch({ type: types.CREATE_POST, payload: postObject });
+
+            db.collection('posts')
+                .doc(`${id}`)
+                .set(postObject)
+                .then((ref) => {
+                    dispatch({
+                        type: types.CREATE_POST_SUCCESS,
+                        payload: ref,
+                    });
+
+                    dispatch(
+                        NavigationActions.navigate({
+                            key: 'SettingsScreen',
+                            routeName: 'SettingsScreen',
+                        })
+                    );
+                })
+                .catch((err) => {
+                    dispatch({
+                        type: types.CREATE_POST_FAIL,
+                        payload: `Encountered error: ${err}`,
+                    });
+                });
+        } catch (e) {
+            console.log(e);
+            dispatch({
+                type: types.CREATE_POST_FAIL,
+                payload: 'dun goofed',
+            });
+        }
+    };
+};
+```
+
+Our [rootReducer.js](./johns-starter-kit/rootReducer.js) combines all of our reducers which gets passed into our store.js
+
+---
 
 ## Deployment Guide
 
