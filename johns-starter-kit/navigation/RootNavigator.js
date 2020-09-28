@@ -9,6 +9,7 @@ import MainTabNavigator from './MainTabNavigator';
 import LoadingScreen from '../screens/LoadingScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
+import DetailedPostScreen from '../screens/DetailedPostScreen';
 
 const Stack = createStackNavigator();
 
@@ -43,6 +44,22 @@ class RootNavigator extends Component {
                                 component={MainTabNavigator}
                                 options={{
                                     headerShown: false,
+                                }}
+                            />
+                            <Stack.Screen
+                                name='DetailedPostScreen'
+                                component={DetailedPostScreen}
+                                options={{
+                                    title: 'A Piece of Love',
+                                    headerStyle: {
+                                        backgroundColor: Colors.livingCoral,
+                                    },
+                                    headerTintColor: '#fff',
+                                    headerTitleStyle: {
+                                        fontFamily: 'gilbert',
+                                        fontSize: 24,
+                                        fontWeight: undefined,
+                                    },
                                 }}
                             />
                         </>

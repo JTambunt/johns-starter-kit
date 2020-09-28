@@ -21,6 +21,7 @@ function HomeStack() {
             <HomeStackNavigator.Screen
                 name='HomeScreen'
                 component={HomeScreen}
+                options={{ title: 'Home' }}
             />
         </HomeStackNavigator.Navigator>
     );
@@ -37,10 +38,12 @@ function SettingsStack() {
             <SettingsStackNavigator.Screen
                 name='SettingsScreen'
                 component={SettingsScreen}
+                options={{ title: 'Settings' }}
             />
             <SettingsStackNavigator.Screen
                 name='CreatePostScreen'
                 component={CreatePostScreen}
+                options={{ title: 'Create Post' }}
             />
         </SettingsStackNavigator.Navigator>
     );
