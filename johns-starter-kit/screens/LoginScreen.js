@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ userSession, firebase }) => {
-    const { email, password, error, loading, user } = userSession;
+    const { email, password, error, loading } = userSession;
 
     const { auth, profile } = firebase;
 
@@ -123,7 +123,6 @@ const mapStateToProps = ({ userSession, firebase }) => {
         password: password ? password : '',
         error,
         loading,
-        user,
         auth,
         profile,
     };

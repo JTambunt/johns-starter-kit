@@ -1,5 +1,4 @@
 import Firebase, { db } from '../config/Firebase.js';
-import { NavigationActions } from 'react-navigation';
 
 // ------------------------------------ TYPES ------------------------------------
 export const types = {
@@ -59,7 +58,6 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 loading: false,
-                user: action.payload,
             };
         case types.SIGNUP_FAIL:
             return {
@@ -114,12 +112,6 @@ export const login = ({ email, password }) => {
                             type: types.LOGIN_SUCCESS,
                             payload: result.user,
                         });
-                        dispatch(
-                            NavigationActions.navigate({
-                                key: 'MainTabNavigator',
-                                routeName: 'MainTabNavigator',
-                            })
-                        );
                     },
                     function (error) {
                         dispatch({
@@ -157,12 +149,9 @@ export const signup = ({ fullName, userName, email, password }) => {
                             .doc(Firebase.auth().currentUser.uid)
                             .set(user)
                             .then((ref) => {
-                                dispatch(
-                                    NavigationActions.navigate({
-                                        key: 'MainTabNavigator',
-                                        routeName: 'MainTabNavigator',
-                                    })
-                                );
+                                dispatch({
+                                    type: types.SIGNUP_SUCCESS,
+                                });
                             })
                             .catch((err) => {
                                 dispatch({

@@ -229,13 +229,10 @@ class PostItem extends Component {
     }
 }
 
-const mapStateToProps = ({ userSession, firebase }) => {
-    const { user } = userSession;
-
+const mapStateToProps = ({ firebase }) => {
     const { auth, profile } = firebase;
 
     return {
-        user,
         auth,
         profile,
     };

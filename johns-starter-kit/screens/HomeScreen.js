@@ -131,13 +131,10 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = ({ userSession, firestore }) => {
-    const { user } = userSession;
-
+const mapStateToProps = ({ firestore }) => {
     const { ordered } = firestore;
 
     return {
-        user,
         posts: ordered.posts ? ordered.posts : [],
     };
 };

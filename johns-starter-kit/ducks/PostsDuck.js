@@ -1,6 +1,5 @@
-import { NavigationActions } from 'react-navigation';
 import { db } from '../config/Firebase.js';
-
+import * as NavigationHelper from '../navigation/NavigationHelper';
 // ------------------------------------ TYPES ------------------------------------
 export const types = {
     CREATE_POST: 'CREATE_POST',
@@ -86,12 +85,7 @@ export const createPost = (post) => {
                         payload: ref,
                     });
 
-                    dispatch(
-                        NavigationActions.navigate({
-                            key: 'SettingsScreen',
-                            routeName: 'SettingsScreen',
-                        })
-                    );
+                    NavigationHelper.navigate('SettingsScreen');
                 })
                 .catch((err) => {
                     dispatch({

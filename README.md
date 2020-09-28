@@ -20,8 +20,9 @@ What is included in this starter kit:
 3. from the [firebase web console](https://console.firebase.google.com/), create a project.
 4. Inside the project you just created, click on the add </> icon to create a web app. (ignore the Hosting option and the SDK script)
 5. click Develop -> Authentication -> Sign-in method -> Email/Password -> toggle Enable
-6. click Settings (gear icon) -> scroll down to the app you just made, select "Config" under "Firebase SDK snippet" and copy the snippet
-7. create a file called Secrets.js in `johns-starter-kit/config/` and add the snippet like so:
+6. click Develop -> Cloud Firestore -> Create database -> select 'Start in test mode' -> Enable
+7. click Settings (gear icon) -> scroll down to the app you just made, select "Config" under "Firebase SDK snippet" and copy the snippet
+8. create a file called Secrets.js in `johns-starter-kit/config/` and add the snippet like so:
 
 ```shell
 export const firebaseConfig = {
@@ -153,12 +154,7 @@ export const createPost = (post) => {
                         payload: ref,
                     });
 
-                    dispatch(
-                        NavigationActions.navigate({
-                            key: 'SettingsScreen',
-                            routeName: 'SettingsScreen',
-                        })
-                    );
+                    NavigationHelper.navigate('SettingsScreen');
                 })
                 .catch((err) => {
                     dispatch({

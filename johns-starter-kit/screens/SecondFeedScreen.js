@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 
 import { PostItem } from '../components/common';
-import Colors from '../constants/Colors';
+import { Colors } from '../constants';
 
 class SecondFeedScreen extends Component {
     state = {
@@ -96,17 +96,13 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = ({ userSession, things, firestore }) => {
-    const { user, authenticated } = userSession;
-
+const mapStateToProps = ({ things, firestore }) => {
     const { loading, thingsFeed } = things;
 
     const { ordered } = firestore;
 
     return {
         loading,
-        authenticated,
-        user,
         thingsFeed,
         things: ordered.things ? ordered.things : [],
     };

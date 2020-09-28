@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { Platform, StyleSheet, View, Image } from 'react-native';
+import { Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Provider } from 'react-redux';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
@@ -91,12 +90,3 @@ export default class App extends Component {
         this.setState({ isLoadingComplete: true });
     };
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});

@@ -119,14 +119,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ userSession }) => {
-    const { email, password, error, loading, user } = userSession;
+    const { email, password, error, loading } = userSession;
 
     return {
         email: email ? email : '',
         password: password ? password : '',
         error,
         loading,
-        user,
     };
 };
 
