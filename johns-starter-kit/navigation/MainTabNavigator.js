@@ -2,15 +2,34 @@ import React from 'react';
 import { Text, View, Platform } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { TabBarIcon } from '../components';
-import { Colors } from '../constants';
+import { Colors, Typography } from '../constants';
 import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import CreatePostScreen from '../screens/CreatePostScreen';
-import { headerConfig } from './RootNavigator';
 
 const HomeStackNavigator = createStackNavigator();
+
+const headerConfig = {
+    headerStyle: {
+        backgroundColor: Colors.limpetShell,
+        shadowOpacity: 0,
+    },
+    headerTitleStyle: {
+        ...Typography.h1,
+    },
+    headerBackTitleVisible: false,
+    headerBackImage: () => (
+        <MaterialCommunityIcons
+            color={Colors.turkishSea}
+            name='arrow-left'
+            size={32}
+            style={{ marginLeft: 8 }}
+        />
+    ),
+};
 
 function HomeStack() {
     return (

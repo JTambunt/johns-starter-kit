@@ -13,7 +13,7 @@ import DetailedPostScreen from '../screens/DetailedPostScreen';
 
 const Stack = createStackNavigator();
 
-export const headerConfig = {
+const headerConfig = {
     headerStyle: {
         backgroundColor: Colors.limpetShell,
         shadowOpacity: 0,
