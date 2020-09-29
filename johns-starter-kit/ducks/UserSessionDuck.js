@@ -21,7 +21,6 @@ const INITIAL_STATE = {
     user: null,
     error: '',
     loading: false,
-    spotifyCredentials: {},
 };
 
 export default (state = INITIAL_STATE, action) => {

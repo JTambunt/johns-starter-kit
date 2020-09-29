@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { navigationRef } from './NavigationHelper';
 
 import { Colors, Typography } from '../constants';
 import MainTabNavigator from './MainTabNavigator';
@@ -35,7 +36,7 @@ const headerConfig = {
 class RootNavigator extends Component {
     render() {
         return (
-            <NavigationContainer>
+            <NavigationContainer ref={navigationRef}>
                 <Stack.Navigator screenOptions={() => headerConfig}>
                     {this.props.auth.uid ? (
                         <>
