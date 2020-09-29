@@ -37,11 +37,15 @@ export const firebaseConfig = {
 };
 ```
 
-8. cd into the directory `cd johns-starter-kit` run `chmod u+r+x setup.sh`
+9. Install the following: install homebrew, install nvm, switch your active npm version to v10, install yarn, install expo-cli, and install firebase-tools globally
+
+10. Run `yarn install`
+
+<!-- 10. cd into the directory `cd johns-starter-kit` run `chmod u+r+x setup.sh`
 
 > :warning: **Usage of the setup.sh script**: The following script will modify your shell profile (assumes bash_profile or zshrc), install homebrew, install nvm, switch your active npm version to v10, install yarn, install expo-cli, and install firebase-tools globally. If you have your own configuration for these already, I suggest manually installing these yourself and installing the project specific packages with `yarn install`.
 
-9.  run `./setup.sh`
+1.  run `./setup.sh` -->
 
 You should now be all set! To run the app, use the command `expo start` followed by the device you would like to run it on `i` for the iOS simulator, `a` for the android simulater, `w` for running it on the browser, or `e` to run it on your device (setup/installation of the expo app required to run on physical device)
 

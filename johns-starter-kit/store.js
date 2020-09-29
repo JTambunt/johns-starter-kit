@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { reduxFirestore } from 'redux-firestore';
 import logger from 'redux-logger';
 
-import Environment from './constants/Environment';
+import Environment from './config/Environment';
 import rootReducer from './rootReducer';
 import Firebase from './config/Firebase';
 
