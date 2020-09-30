@@ -66,19 +66,6 @@ class SettingsScreen extends Component {
     }
 }
 
-SettingsScreen.navigationOptions = {
-    title: 'Settings',
-    headerStyle: {
-        backgroundColor: Colors.livingCoral,
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-        fontFamily: 'gilbert',
-        fontSize: 24,
-        fontWeight: undefined,
-    },
-};
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,

@@ -45,19 +45,6 @@ class CreatePostScreen extends React.Component {
     }
 }
 
-CreatePostScreen.navigationOptions = {
-    title: 'Create Post',
-    headerStyle: {
-        backgroundColor: Colors.livingCoral,
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-        fontFamily: 'gilbert',
-        fontSize: 24,
-        fontWeight: undefined,
-    },
-};
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,

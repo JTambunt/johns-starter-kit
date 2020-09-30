@@ -108,19 +108,6 @@ class HomeScreen extends Component {
     }
 }
 
-HomeScreen.navigationOptions = {
-    title: 'Main',
-    headerStyle: {
-        backgroundColor: Colors.livingCoral,
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-        fontFamily: 'gilbert',
-        fontSize: 24,
-        fontWeight: undefined,
-    },
-};
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
