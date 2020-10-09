@@ -37,9 +37,16 @@ export const firebaseConfig = {
 };
 ```
 
-9. Install the following: install homebrew, install nvm, switch your active npm version to v10, install yarn, install expo-cli, and install firebase-tools globally
+1. Install the following:
 
-10. Run `yarn install`
+    - install [homebrew](https://brew.sh/)
+    - install nvm (`brew install nvm`)
+    - switch your active npm version to v10 (`nvm install 10 && nvm use 10`)
+    - install yarn (`npm install -g yarn`)
+    - install expo-cli (`npm install -g expo-cli`)
+    - and install firebase-tools globally (`npm install -g firebase-tools`)
+
+2. From the `johns-starter-kit` directory, run `yarn install`
 
 <!-- 10. cd into the directory `cd johns-starter-kit` run `chmod u+r+x setup.sh`
 

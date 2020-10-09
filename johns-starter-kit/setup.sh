@@ -1,3 +1,4 @@
+# Run at your own risk!
 # if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
 #    # assume Zsh
 #    PROFILE=".zshrc"
